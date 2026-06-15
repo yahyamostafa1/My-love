@@ -2,6 +2,22 @@
 // ROMANTIC PAGE — INTERACTIVE LOGIC
 // ============================================
 
+// YouTube Player Setup
+let ytPlayer;
+function onYouTubeIframeAPIReady() {
+    ytPlayer = new YT.Player('youtubePlayer', {
+        height: '0',
+        width: '0',
+        videoId: 'Xno24NdFZiI',
+        playerVars: {
+            'autoplay': 0,
+            'controls': 0,
+            'loop': 1,
+            'playlist': 'Xno24NdFZiI' // Required for loop to work
+        }
+    });
+}
+
 const SECRET_PASSWORD = 'روري';
 
 // ============================================
@@ -19,6 +35,11 @@ function checkPassword() {
         // Correct password — transition
         errorMsg.textContent = '';
         
+        // Play YouTube background music
+        if (typeof ytPlayer !== 'undefined' && ytPlayer.playVideo) {
+            ytPlayer.playVideo();
+        }
+
         // Launch confetti burst
         launchConfetti();
 
@@ -160,6 +181,41 @@ function launchConfetti() {
 
         setTimeout(() => confetti.remove(), 3000);
     }
+}
+
+// ============================================
+// MAGIC MESSAGES
+// ============================================
+const sweetMessages = [
+    "وجودك بيخلي الحاجات العادية، حاجات مميزة جداً ✨",
+    "يارب الابتسامة دي متفارقش وشك أبداً 🌸",
+    "فيكي رقة وطيبة يخطفوا قلب أي حد 🥺",
+    "مبسوط جداً إن الصدفة جمعتني بيكي 🤍",
+    "خليكي متأكدة إنك حد جميل جداً من جوة ومن برة 💖",
+    "كلامك الحلو بيريح القلب ويطمنه 🥺"
+];
+
+function showMagicMessage() {
+    const msgElement = document.getElementById('magicMessageText');
+    
+    // Pick a message different from current
+    let randomMsg;
+    do {
+        randomMsg = sweetMessages[Math.floor(Math.random() * sweetMessages.length)];
+    } while (randomMsg === msgElement.textContent && sweetMessages.length > 1);
+    
+    // Animate out
+    msgElement.classList.remove('show');
+    
+    setTimeout(() => {
+        msgElement.textContent = randomMsg;
+        // Animate in
+        msgElement.classList.add('show');
+        
+        // Add a little pop of small hearts at the button
+        createFloatingHeart();
+        createFloatingHeart();
+    }, 400);
 }
 
 // ============================================

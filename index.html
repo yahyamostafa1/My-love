@@ -95,8 +95,66 @@
             <span>❤️</span><span>💕</span><span>💖</span><span>💗</span><span>💓</span>
             <span>💝</span><span>💘</span><span>💞</span><span>💟</span><span>❤️</span>
         </div>
+
+        <!-- Extra Sections: Reasons and Gallery -->
+        <div class="extra-content">
+            
+            <div class="reasons-section fade-in-up delay-2">
+                <h2 class="section-title">حاجات خطفتني من أول يوم ✨</h2>
+                <div class="reasons-grid">
+                    <div class="reason-card">
+                        <span class="reason-icon">🌸</span>
+                        <h3>ضحكتك</h3>
+                        <p>نورت يومي، وخليتني أبتسم من غير سبب.</p>
+                    </div>
+                    <div class="reason-card">
+                        <span class="reason-icon">🥺</span>
+                        <h3>رقتك</h3>
+                        <p>هدوءك وطريقتك في الكلام دخلت قلبي على طول.</p>
+                    </div>
+                    <div class="reason-card">
+                        <span class="reason-icon">✨</span>
+                        <h3>أحلى صدفة</h3>
+                        <p>مفيش أجمل من الصدفة اللي خلتني أعرف حد زيك.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="special-note-section fade-in-up delay-3">
+                <div class="note-card">
+                    <div class="note-icon">💌</div>
+                    <p class="note-text">
+                        "مبسوط جداً إني عرفتك.. ويارب الأيام الجاية تجيب معاها كل حاجة حلوة شبهك 🤍"
+                    </p>
+                </div>
+            </div>
+
+            <!-- Happiness Meter -->
+            <div class="happiness-section fade-in-up delay-4">
+                <h3 class="meter-title">مؤشر السعادة من يوم ما عرفتك 📈</h3>
+                <div class="meter-container">
+                    <div class="meter-fill">
+                        <span class="meter-text">1000%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Magic Compliment Generator -->
+            <div class="magic-message-section fade-in-up delay-5">
+                <button class="magic-btn" onclick="showMagicMessage()">
+                    ✨ اضغطي هنا ✨
+                </button>
+                <p id="magicMessageText" class="magic-message-text"></p>
+            </div>
+
+        </div>
     </div>
 
+    <!-- Hidden YouTube Player -->
+    <div id="youtubePlayer" style="display:none;"></div>
+
+    <!-- YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script src="script.js"></script>
 </body>
 </html>

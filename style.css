@@ -684,3 +684,315 @@ body::before {
         transform: translateY(100vh) rotate(720deg) scale(0);
     }
 }
+
+/* ============================================
+   EXTRA CONTENT SECTIONS
+   ============================================ */
+.extra-content {
+    margin-top: 5rem;
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    z-index: 2;
+    position: relative;
+    padding-bottom: 4rem;
+}
+
+.section-title {
+    font-family: var(--font-arabic);
+    font-size: 1.8rem;
+    text-align: center;
+    color: var(--accent-soft);
+    margin-bottom: 2rem;
+    text-shadow: 0 0 20px rgba(255, 107, 138, 0.2);
+}
+
+/* Reasons Grid */
+.reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    padding: 0 1rem;
+}
+
+.reason-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.reason-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(255, 45, 85, 0.15);
+    border-color: rgba(255, 45, 85, 0.3);
+}
+
+.reason-icon {
+    font-size: 3rem;
+    margin-bottom: 1.2rem;
+    display: inline-block;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+}
+
+.reason-card h3 {
+    font-family: var(--font-arabic);
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+
+.reason-card p {
+    font-family: var(--font-arabic);
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+/* Special Note Section */
+.special-note-section {
+    display: flex;
+    justify-content: center;
+    padding: 0 1rem;
+}
+
+.note-card {
+    background: linear-gradient(135deg, rgba(255, 45, 85, 0.1), rgba(255, 107, 138, 0.05));
+    border: 1px solid rgba(255, 45, 85, 0.2);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    max-width: 600px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(255, 45, 85, 0.1);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease;
+}
+
+.note-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(255, 45, 85, 0.2);
+}
+
+.note-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+    filter: drop-shadow(0 5px 15px rgba(255, 45, 85, 0.4));
+}
+
+.note-text {
+    font-family: var(--font-arabic);
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    line-height: 1.8;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Animations for extra content */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeInUp 1.2s ease forwards;
+}
+
+.delay-2 { animation-delay: 2.5s; }
+.delay-3 { animation-delay: 3s; }
+.delay-4 { animation-delay: 3.5s; }
+.delay-5 { animation-delay: 4s; }
+
+/* ============================================
+   HAPPINESS METER
+   ============================================ */
+.happiness-section {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.meter-title {
+    font-family: var(--font-arabic);
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.meter-container {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 30px;
+    height: 35px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.meter-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent-rose), var(--accent-soft));
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 15px;
+    transition: width 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: fillMeter 2.5s forwards 4s; /* Starts after its delay-4 animation */
+    position: relative;
+}
+
+.meter-fill::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmerMeter 2s infinite;
+}
+
+@keyframes fillMeter {
+    to { width: 100%; }
+}
+
+@keyframes shimmerMeter {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.meter-text {
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    font-family: var(--font-body);
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* ============================================
+   MAGIC COMPLIMENT GENERATOR
+   ============================================ */
+.magic-message-section {
+    text-align: center;
+    margin-top: 1rem;
+    padding-bottom: 3rem;
+}
+
+.magic-btn {
+    background: rgba(255, 45, 85, 0.1);
+    border: 2px solid var(--accent-pink);
+    color: #fff;
+    font-family: var(--font-arabic);
+    font-size: 1.2rem;
+    padding: 0.8rem 2.5rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(255, 45, 85, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+.magic-btn:hover {
+    background: var(--accent-pink);
+    color: white;
+    transform: scale(1.08) translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255, 45, 85, 0.4);
+}
+
+.magic-btn:active {
+    transform: scale(0.95);
+}
+
+.magic-message-text {
+    font-family: var(--font-arabic);
+    font-size: 1.3rem;
+    color: var(--accent-soft);
+    margin-top: 2rem;
+    min-height: 2.5rem;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.magic-message-text.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ============================================
+   EXTRA MOBILE OPTIMIZATION
+   ============================================ */
+@media (max-width: 768px) {
+    .extra-content {
+        margin-top: 3rem;
+        gap: 3rem;
+        padding-bottom: 2rem;
+    }
+    .reasons-grid {
+        grid-template-columns: 1fr;
+    }
+    .note-card {
+        padding: 2rem 1.5rem;
+        margin: 0 1rem;
+    }
+    .note-text {
+        font-size: 1.15rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 1.4rem;
+        margin-bottom: 1.5rem;
+    }
+    .reason-card {
+        padding: 1.5rem 1rem;
+    }
+    .reason-icon {
+        font-size: 2.5rem;
+    }
+    .reason-card h3 {
+        font-size: 1.1rem;
+    }
+    .reason-card p {
+        font-size: 0.9rem;
+    }
+    .note-card {
+        padding: 1.5rem 1rem;
+    }
+    .note-icon {
+        font-size: 2.5rem;
+    }
+    .note-text {
+        font-size: 1rem;
+    }
+    .meter-title {
+        font-size: 1rem;
+    }
+    .meter-container {
+        height: 28px;
+    }
+    .meter-text {
+        font-size: 0.85rem;
+    }
+    .magic-btn {
+        font-size: 1.05rem;
+        padding: 0.7rem 2rem;
+    }
+    .magic-message-text {
+        font-size: 1.05rem;
+        padding: 0 1rem;
+        margin-top: 1.5rem;
+    }
+}
+
