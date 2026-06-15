@@ -131,7 +131,7 @@ function startRomanticHearts() {
     // Continuous hearts
     setInterval(() => {
         createFloatingHeart();
-    }, 1200);
+    }, window.innerWidth < 480 ? 2500 : 1200);
 }
 
 // ============================================
@@ -139,7 +139,7 @@ function startRomanticHearts() {
 // ============================================
 function createParticles() {
     const container = document.getElementById('particles');
-    const count = window.innerWidth < 480 ? 30 : 50;
+    const count = window.innerWidth < 480 ? 12 : 50;
 
     for (let i = 0; i < count; i++) {
         const particle = document.createElement('div');
@@ -247,24 +247,24 @@ function createFlyingOrbs() {
         }
 
         // Randomize speed and size
-        const duration = 12 + Math.random() * 15; // 12s to 27s
+        const duration = window.innerWidth < 480 ? 8 + Math.random() * 8 : 12 + Math.random() * 15;
         orb.style.animationDuration = `${duration}s`;
         
-        const size = 5 + Math.random() * 15; // 5px to 20px
+        const size = window.innerWidth < 480 ? 3 + Math.random() * 10 : 5 + Math.random() * 15;
         orb.style.width = `${size}px`;
         orb.style.height = `${size}px`;
         
         // Random glow color
         const colors = ['#ff2d55', '#ffffff', '#ff6b8a', '#ff9eb5', '#ffc107'];
         const color = colors[Math.floor(Math.random() * colors.length)];
-        orb.style.backgroundColor = color;
-        orb.style.boxShadow = `0 0 ${size * 2}px ${color}, 0 0 ${size * 4}px ${color}`;
+        orb.style.background = `radial-gradient(circle, ${color} 40%, transparent 80%)`;
+        // Removed heavy box-shadow for performance
 
         container.appendChild(orb);
 
         // Remove after animation
         setTimeout(() => orb.remove(), duration * 1000);
-    }, 1200); // Create a new orb every 1.2 seconds
+    }, window.innerWidth < 480 ? 3000 : 1200); // Create fewer orbs on mobile
 }
 
 function createShootingStars() {
@@ -279,7 +279,7 @@ function createShootingStars() {
         
         container.appendChild(star);
         setTimeout(() => star.remove(), 2500);
-    }, 3500); // New shooting star every 3.5 seconds
+    }, window.innerWidth < 480 ? 7000 : 3500); // New shooting star every 7s on mobile
 }
 
 // ============================================
