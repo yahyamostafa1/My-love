@@ -10,10 +10,18 @@ function onYouTubeIframeAPIReady() {
         width: '0',
         videoId: 'Xno24NdFZiI',
         playerVars: {
-            'autoplay': 0,
+            'autoplay': 1,
             'controls': 0,
+            'playsinline': 1,
             'loop': 1,
             'playlist': 'Xno24NdFZiI' // Required for loop to work
+        },
+        events: {
+            'onReady': function(event) {
+                // Force mute and play to pre-buffer the song in the background
+                event.target.mute();
+                event.target.playVideo();
+            }
         }
     });
 }
@@ -35,8 +43,10 @@ function checkPassword() {
         // Correct password — transition
         errorMsg.textContent = '';
         
-        // Play YouTube background music
-        if (typeof ytPlayer !== 'undefined' && ytPlayer.playVideo) {
+        // Play YouTube background music instantly
+        if (typeof ytPlayer !== 'undefined' && ytPlayer.unMute) {
+            ytPlayer.unMute();     // Unmute the pre-buffered song
+            ytPlayer.seekTo(0);    // Start from the very beginning
             ytPlayer.playVideo();
         }
 
