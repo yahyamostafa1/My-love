@@ -809,6 +809,67 @@ body::before {
 .delay-5 { animation-delay: 4s; }
 
 /* ============================================
+   FOREGROUND MARQUEE (MOVING TEXT)
+   ============================================ */
+.marquee-section {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 1.5rem 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background: linear-gradient(90deg, transparent, rgba(255, 45, 85, 0.05), transparent);
+    z-index: 2;
+}
+
+.marquee-container {
+    width: max-content;
+    display: flex;
+}
+
+.marquee-content {
+    display: flex;
+    gap: 1.5rem;
+    padding-left: 1.5rem;
+    white-space: nowrap;
+}
+
+.marquee-content span {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.6rem 1.8rem;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 45, 85, 0.2);
+    color: var(--accent-soft);
+    font-family: var(--font-arabic);
+    font-size: 1.2rem;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 5px 15px rgba(255, 45, 85, 0.1);
+}
+
+.marquee-left {
+    animation: scrollMarqueeLeft 20s linear infinite;
+}
+
+.marquee-right {
+    animation: scrollMarqueeRight 20s linear infinite;
+}
+
+@keyframes scrollMarqueeLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(33.33%); }
+}
+
+@keyframes scrollMarqueeRight {
+    0% { transform: translateX(33.33%); }
+    100% { transform: translateX(0); }
+}
+
+/* ============================================
    HAPPINESS METER
    ============================================ */
 .happiness-section {
@@ -994,5 +1055,82 @@ body::before {
         padding: 0 1rem;
         margin-top: 1.5rem;
     }
+    .marquee-content span {
+        font-size: 1rem;
+        padding: 0.5rem 1.2rem;
+    }
+}
+
+/* ============================================
+   FLYING ORBS (Left & Right)
+   ============================================ */
+.flying-orbs-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.flying-orb {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+}
+
+@keyframes flyRight {
+    0% { transform: translateX(0) translateY(0) scale(0.5); opacity: 0; }
+    10% { opacity: 0.8; transform: translateX(10vw) translateY(-20px) scale(1); }
+    50% { opacity: 0.4; transform: translateX(60vw) translateY(30px) scale(1.5); }
+    90% { opacity: 0.8; transform: translateX(110vw) translateY(-10px) scale(1); }
+    100% { transform: translateX(130vw) translateY(0) scale(0.5); opacity: 0; }
+}
+
+@keyframes flyLeft {
+    0% { transform: translateX(0) translateY(0) scale(0.5); opacity: 0; }
+    10% { opacity: 0.8; transform: translateX(-10vw) translateY(20px) scale(1); }
+    50% { opacity: 0.4; transform: translateX(-60vw) translateY(-30px) scale(1.5); }
+    90% { opacity: 0.8; transform: translateX(-110vw) translateY(10px) scale(1); }
+    100% { transform: translateX(-130vw) translateY(0) scale(0.5); opacity: 0; }
+}
+
+/* ============================================
+   SHOOTING STARS
+   ============================================ */
+.shooting-stars-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.shooting-star {
+    position: absolute;
+    left: -20%;
+    width: 150px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(255,255,255,1), transparent);
+    animation: shootingStarAnim 2s linear forwards;
+}
+
+.shooting-star::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -2px;
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 15px 4px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes shootingStarAnim {
+    0% { transform: translateX(0) translateY(0) rotate(20deg); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateX(130vw) translateY(40vh) rotate(20deg); opacity: 0; }
 }
 

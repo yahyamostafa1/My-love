@@ -52,6 +52,10 @@ function checkPassword() {
             
             // Start intensive floating hearts
             startRomanticHearts();
+            
+            // Start flying animations
+            createFlyingOrbs();
+            createShootingStars();
         }, 800);
 
     } else {
@@ -216,6 +220,66 @@ function showMagicMessage() {
         createFloatingHeart();
         createFloatingHeart();
     }, 400);
+}
+
+// ============================================
+// FLYING ORBS & SHOOTING STARS
+// ============================================
+function createFlyingOrbs() {
+    const container = document.createElement('div');
+    container.classList.add('flying-orbs-container');
+    document.body.appendChild(container);
+
+    setInterval(() => {
+        const orb = document.createElement('div');
+        orb.classList.add('flying-orb');
+        
+        // Randomly start from left or right
+        const startLeft = Math.random() > 0.5;
+        orb.style.top = `${Math.random() * 80 + 10}%`; // 10% to 90% vertical
+        
+        if (startLeft) {
+            orb.style.left = '-10%';
+            orb.style.animationName = 'flyRight';
+        } else {
+            orb.style.right = '-10%';
+            orb.style.animationName = 'flyLeft';
+        }
+
+        // Randomize speed and size
+        const duration = 12 + Math.random() * 15; // 12s to 27s
+        orb.style.animationDuration = `${duration}s`;
+        
+        const size = 5 + Math.random() * 15; // 5px to 20px
+        orb.style.width = `${size}px`;
+        orb.style.height = `${size}px`;
+        
+        // Random glow color
+        const colors = ['#ff2d55', '#ffffff', '#ff6b8a', '#ff9eb5', '#ffc107'];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        orb.style.backgroundColor = color;
+        orb.style.boxShadow = `0 0 ${size * 2}px ${color}, 0 0 ${size * 4}px ${color}`;
+
+        container.appendChild(orb);
+
+        // Remove after animation
+        setTimeout(() => orb.remove(), duration * 1000);
+    }, 1200); // Create a new orb every 1.2 seconds
+}
+
+function createShootingStars() {
+    const container = document.createElement('div');
+    container.classList.add('shooting-stars-container');
+    document.body.appendChild(container);
+
+    setInterval(() => {
+        const star = document.createElement('div');
+        star.classList.add('shooting-star');
+        star.style.top = `${Math.random() * 50}%`; // Top half of screen
+        
+        container.appendChild(star);
+        setTimeout(() => star.remove(), 2500);
+    }, 3500); // New shooting star every 3.5 seconds
 }
 
 // ============================================
