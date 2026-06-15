@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>❤️ For You</title>
+    <meta name="description" content="A special romantic message for someone special">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Outfit:wght@300;400;600;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Floating Hearts Background -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <!-- Stars / Particles Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Password Screen -->
+    <div class="password-screen" id="passwordScreen">
+        <div class="lock-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+        </div>
+        <h1 class="password-title">Enter The Secret Key</h1>
+        <p class="password-subtitle">✨ Type the magic word ✨</p>
+        <div class="input-wrapper">
+            <input 
+                type="text" 
+                id="passwordInput" 
+                class="password-input" 
+                placeholder="اكتب كلمة السر..."
+                autocomplete="off"
+                autofocus
+            >
+            <div class="input-glow"></div>
+        </div>
+        <button class="unlock-btn" id="unlockBtn" onclick="checkPassword()">
+            <span class="btn-text">💝 افتح</span>
+            <span class="btn-shimmer"></span>
+        </button>
+        <p class="error-msg" id="errorMsg"></p>
+    </div>
+
+    <!-- Main Content (Hidden Initially) -->
+    <div class="main-content hidden" id="mainContent">
+        <!-- Glow orbs -->
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="glow-orb orb-3"></div>
+
+        <!-- Heart Container -->
+        <div class="heart-container">
+            <div class="heart-glow"></div>
+            <div class="heart" id="mainHeart">
+                <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#ff2d55;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#ff375f;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#e0245e;stop-opacity:1" />
+                        </linearGradient>
+                        <filter id="heartShadow">
+                            <feDropShadow dx="0" dy="4" stdDeviation="20" flood-color="#ff2d5580"/>
+                        </filter>
+                    </defs>
+                    <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z" 
+                          fill="url(#heartGrad)" filter="url(#heartShadow)"/>
+                </svg>
+            </div>
+            <!-- Sparkles around heart -->
+            <div class="sparkle s1">✦</div>
+            <div class="sparkle s2">✧</div>
+            <div class="sparkle s3">✦</div>
+            <div class="sparkle s4">✧</div>
+            <div class="sparkle s5">✦</div>
+            <div class="sparkle s6">✧</div>
+        </div>
+
+        <!-- Love Message -->
+        <div class="love-message">
+            <h1 class="love-text main-love">I Love You RORY ❤️</h1>
+            <p class="love-text sub-love">Thanks A Lot 💖</p>
+            <div class="divider">
+                <span class="divider-heart">💕</span>
+            </div>
+            <p class="love-text whisper">You mean the world to me</p>
+        </div>
+
+        <!-- Ribbon of mini hearts -->
+        <div class="mini-hearts-ribbon">
+            <span>❤️</span><span>💕</span><span>💖</span><span>💗</span><span>💓</span>
+            <span>💝</span><span>💘</span><span>💞</span><span>💟</span><span>❤️</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
