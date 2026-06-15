@@ -1066,6 +1066,9 @@ body::before {
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
     }
+    .glow-orb {
+        display: none !important; /* Extreme performance killer on mobile GPU */
+    }
 }
 
 /* ============================================

@@ -138,8 +138,11 @@ function startRomanticHearts() {
 // PARTICLES / STARS BACKGROUND
 // ============================================
 function createParticles() {
+    // Disable background particles on mobile completely for performance
+    if (window.innerWidth < 480) return;
+
     const container = document.getElementById('particles');
-    const count = window.innerWidth < 480 ? 12 : 50;
+    const count = 50;
 
     for (let i = 0; i < count; i++) {
         const particle = document.createElement('div');
@@ -230,6 +233,9 @@ function createFlyingOrbs() {
     container.classList.add('flying-orbs-container');
     document.body.appendChild(container);
 
+    // Limit heavily on mobile (one every 6 seconds), normal on desktop
+    const intervalTime = window.innerWidth < 480 ? 6000 : 1200;
+
     setInterval(() => {
         const orb = document.createElement('div');
         orb.classList.add('flying-orb');
@@ -264,10 +270,13 @@ function createFlyingOrbs() {
 
         // Remove after animation
         setTimeout(() => orb.remove(), duration * 1000);
-    }, window.innerWidth < 480 ? 3000 : 1200); // Create fewer orbs on mobile
+    }, intervalTime); 
 }
 
 function createShootingStars() {
+    // Disable shooting stars completely on mobile for performance
+    if (window.innerWidth < 480) return;
+
     const container = document.createElement('div');
     container.classList.add('shooting-stars-container');
     document.body.appendChild(container);
@@ -279,7 +288,7 @@ function createShootingStars() {
         
         container.appendChild(star);
         setTimeout(() => star.remove(), 2500);
-    }, window.innerWidth < 480 ? 7000 : 3500); // New shooting star every 7s on mobile
+    }, 3500);
 }
 
 // ============================================
